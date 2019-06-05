@@ -94,7 +94,7 @@ function getYTStreamer(streamer) {
       var zuschauer = $('.yt-lockup-meta-info').eq(0).text();
 
       if (zuschauer.includes(matchString)) {
-        var viewers = parseInt(zuschauer.split('.').join(""));
+        var viewers = parseInt(zuschauer.split(',').join(""));
         streamer.viewers = viewers;
         streamer.status = "online";
       }else{

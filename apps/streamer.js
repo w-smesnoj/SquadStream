@@ -66,7 +66,7 @@ var requestLoop = setInterval(function(){
 // };
 
 
-var matchString = "Zuschauer";
+var matchString = x;
 var cheerio = require("cheerio");
 //
 // var result = twstreamers.streamers.filter(x => x.name === "Ungespielt");
@@ -93,7 +93,9 @@ function getYTStreamer(streamer) {
 
       var zuschauer = $('.yt-lockup-meta-info').eq(0).text();
 
-      if (zuschauer.includes(matchString)) {
+
+
+      if (zuschauer.includes("Zuschauer") || zuschauer.includes("watching")) {
         var viewers = parseInt(zuschauer.split(',').join(""));
         streamer.viewers = viewers;
         streamer.status = "online";
@@ -101,7 +103,6 @@ function getYTStreamer(streamer) {
         streamer.viewers = "0";
         streamer.status = "offline";
       }
-
       console.log(html);
       console.log(zuschauer);
       console.log(streamer.name + " is " + streamer.status + ". " + streamer.viewers + " Zuschauer.");

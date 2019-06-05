@@ -1,0 +1,79 @@
+.moving {
+	pointer-events: none;
+}
+
+.visib {
+	position: absolute !important;
+}
+
+/* .drop {
+	display: flex;
+    justify-content: stretch;
+} */
+
+.main {
+	display: inline-block;
+    position: relative;
+    width: -webkit-fill-available;
+}
+
+.base {
+	display: -webkit-box;
+	    position: absolute;
+	    width: 100%;
+	    height: auto;
+	    right: 0px;
+}
+
+.cont {
+  width: -webkit-fill-available;
+  height: -webkit-fill-available;
+  position: relative;
+}
+
+.drop{
+  background: #afb0bf7a;
+  position: unset;
+  z-index: 15;
+}
+
+.left{
+  bottom: 25%;
+  left: 5%;
+  height: 50%;
+  width: 25%;
+}
+
+.right{
+  bottom: 25%;
+  right: 5%;
+  height: 50%;
+  width: 25%;
+}
+
+.top{
+  left: 30%;
+  /* position: absolute; */
+  top: 5%;
+  /* right: 37%; */
+  height: 20%;
+  width: 40%;
+}
+
+.bottom{
+  left: 30%;
+  /* position: absolute; */
+  bottom: 5%;
+  /* right: 37%; */
+  height: 20%;
+  width: 40%;
+}
+
+.center{
+  left: 33%;
+  /* position: absolute; */
+  bottom: 29%;
+  /* right: 37%; */
+  height: 42%;
+  width: 34%;
+}

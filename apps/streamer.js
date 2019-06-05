@@ -65,8 +65,6 @@ var requestLoop = setInterval(function(){
     // headers:{ 	'Client-ID': '3pg3zv5se9mgdur14voydceb2hky4m' }
 // };
 
-
-var matchString = x;
 var cheerio = require("cheerio");
 //
 // var result = twstreamers.streamers.filter(x => x.name === "Ungespielt");
@@ -96,7 +94,13 @@ function getYTStreamer(streamer) {
 
 
       if (zuschauer.includes("Zuschauer") || zuschauer.includes("watching")) {
-        var viewers = parseInt(zuschauer.split(',').join(""));
+        if(zuschauer.includes(".")){
+          var viewers = parseInt(zuschauer.split('.').join(""));
+        }else{
+          var viewers = parseInt(zuschauer.split(',').join(""));
+        }
+
+
         streamer.viewers = viewers;
         streamer.status = "online";
       }else{

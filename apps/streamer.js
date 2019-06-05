@@ -107,8 +107,8 @@ function getYTStreamer(streamer) {
         streamer.viewers = "0";
         streamer.status = "offline";
       }
-      console.log(html);
-      console.log(zuschauer);
+      // console.log(html);
+      // console.log(zuschauer);
       console.log(streamer.name + " is " + streamer.status + ". " + streamer.viewers + " Zuschauer.");
     }
 	});

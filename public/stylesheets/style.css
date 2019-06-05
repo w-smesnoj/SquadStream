@@ -103,11 +103,11 @@ p{    margin: 0px;
 }
 
 .panel-title {
-    color: #b8b5c0;
-    margin-top: 0;
-    margin-bottom: 0;
-    text-align: center;
-    font-size: 16px;
+	color: #b8b5c0;
+	    margin-top: 10px;
+	    margin-bottom: 10px;
+	    text-align: center;
+	    font-size: 16px;
 }
 .logo{
 	width: auto;
@@ -137,19 +137,22 @@ left: 0px;
 }
 
 .side-panel-heading {
-      border-radius: 10px 10px 0px 0px;
-      position: inherit !important;
-      min-height: auto;
-      padding: 14px 0px !important;
-      font-family: Roboto;
-      font-weight: 400;
-      letter-spacing: 0.04em;
-      background-color: #19171c !important;
-      border-bottom: 0px solid #343942;
-      position: absolute;
-      min-height: 35px;
-      padding: 0px;
-      color: white !important;
+	height: auto;
+	display: contents;
+	/* position: relative; */
+	border-radius: 10px 10px 0px 0px;
+	position: inherit !important;
+	min-height: auto;
+	padding: 14px 0px !important;
+	font-family: Roboto;
+	font-weight: 400;
+	letter-spacing: 0.04em;
+	background-color: #948cad !important;
+	border-bottom: 0px solid #343942;
+	position: absolute;
+	min-height: 35px;
+	padding: 0px;
+	color: white !important;
   }
 
 
@@ -205,6 +208,7 @@ position: absolute;
 	background-color: transparent !important;
   /* margin: 14px 20px; */
   padding: 22px !important;
+	font-size: 15px;
 }
 
 .ttop {

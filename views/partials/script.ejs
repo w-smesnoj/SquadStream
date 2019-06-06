@@ -64,12 +64,11 @@ $(document).ready(function() {
     var classx = "off";
     if (dat.status == "online") {
       var classx = "on";
-    }
-
       var output = `<div type="yt" id="${dat.channelID}" streamerid="${dat.channelID}" username="${dat.name}" class="btn yt btn-default box-item ${classx}">
                       <p>${dat.name}</p><p class="${classx}">${dat.viewers}</p>
                     </div>`;
       $('#containerside').append(output);
+    }
     });
   console.table(ytstreamers.data);
 

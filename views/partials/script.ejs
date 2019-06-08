@@ -1,6 +1,8 @@
 <script src= "http://player.twitch.tv/js/embed/v1.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="./javascripts/menu.js"></script>
@@ -8,16 +10,36 @@
 <script  type="text/javascript">
 
 
+<%#
+var TestObj = {
+        "Streamers": [{
+            "name": "a01",
+            "channel": "Pine",
+            "description": "Short description of pine."
+        },
+        {
+            "id": "a02",
+            "name": "Birch",
+            "description": "Short description of birch."
+        },
+        {
+            "id": "a03",
+            "name": "Poplar",
+            "description": "Short description of poplar."
+        }]
+}; %>
+
+
+
     function closeStream(streamerid){
       var prnt = '#base'+streamerid+' .box-item';
 
       $(prnt).each(function() {
           $(this).children(':nth-child(3)').remove(); // DELETE X
-          $("#containerside").append($(this)); // MOVE BACK TO SIDE
+          $("#containerside").prepend($(this)); // MOVE BACK TO SIDE
       });
 
-
-      $($("#"+streamerid)).insertAfter( "#myInput" );
+      $("#containerside").prepend($("#"+streamerid));
       //$("#containerside").prepend($("#"+streamerid));
       // $("#close"+streamerid).remove();
       console.log("oo");
@@ -32,6 +54,11 @@
 window.onload = function() {
 $(document).ready(function() {
   console.log("script.ejs");
+
+  $( function() {
+    $( "#tabs" ).tabs();
+  } );
+
 
 
 
@@ -83,6 +110,8 @@ var streamerid = 0;
  //DRAGGABLE HANDLING
  $('.box-item').draggable({
 
+
+
      distance: 50,
      cursor: 'move',
      helper: "clone",
@@ -118,13 +147,16 @@ var streamerid = 0;
        console.log($(ui.draggable));
        $('.box-item').each(function() {
          if ($(this).attr("streamerid") === streamerid) {
-           $(this).appendTo(sideHandle);
+           sideHandle.prepend($(this));
          }
        });
      }
    });
 
-
+   $( function() {
+    $( ".box-item" ).sortable();
+    $( ".box-item" ).disableSelection();
+  } );
 
 var player;
 

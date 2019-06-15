@@ -100,7 +100,7 @@ function getYTStreamer(streamer) {
       console.log(zuschauer);
       console.log(zuschauer);
       if (zuschauer.includes(matchString)) {
-        var viewers = parseInt(zuschauer.split('.').join(""));
+        var viewers = parseInt(zuschauer.split(',').join(""));// . = local version // , = prod version
         streamer.viewers = viewers;
         streamer.status = "online";
       }else{

@@ -66,7 +66,7 @@ var requestLoop = setInterval(function(){
 // };
 
 
-var matchString = "Zuschauer";
+var matchString = "Viewer";
 var cheerio = require("cheerio");
 //
 // var result = twstreamers.streamers.filter(x => x.name === "Ungespielt");
@@ -92,7 +92,10 @@ function getYTStreamer(streamer) {
       const $ = cheerio.load(html);
 
       var zuschauer = $('.yt-lockup-meta-info').eq(0).text();
-
+      console.log(zuschauer);
+      console.log(zuschauer);
+      console.log(zuschauer);
+      console.log(zuschauer);
       if (zuschauer.includes(matchString)) {
         var viewers = parseInt(zuschauer.split('.').join(""));
         streamer.viewers = viewers;

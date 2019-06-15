@@ -1,0 +1,465 @@
+<script src= "http://player.twitch.tv/js/embed/v1.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="./javascripts/menu.js"></script>
+
+<script  type="text/javascript">
+
+
+<%#
+var TestObj = {
+        "Streamers": [{
+            "name": "a01",
+            "channel": "Pine",
+            "description": "Short description of pine."
+        },
+        {
+            "id": "a02",
+            "name": "Birch",
+            "description": "Short description of birch."
+        },
+        {
+            "id": "a03",
+            "name": "Poplar",
+            "description": "Short description of poplar."
+        }]
+}; %>
+
+
+
+    function closeStream(streamerid){
+      var prnt = '#base'+streamerid+' .box-item';
+
+      $(prnt).each(function() {
+          $(this).children(':nth-child(3)').remove(); // DELETE X
+          $("#containerside").prepend($(this)); // MOVE BACK TO SIDE
+      });
+
+      $("#containerside").prepend($("#"+streamerid));
+      //$("#containerside").prepend($("#"+streamerid));
+      // $("#close"+streamerid).remove();
+      console.log("oo");
+      console.log("#base"+streamerid);
+
+      $("#base"+streamerid).remove();
+      $("#base"+streamerid+1).children().appendTo($("#base"+streamerid+1).parent());
+      $("#base"+streamerid+1).remove();//base old.
+    };
+
+
+window.onload = function() {
+$(document).ready(function() {
+  console.log("script.ejs");
+
+  $( function() {
+    $( "#tabs" ).tabs();
+  } );
+
+
+
+
+
+  //CREATE DRAGGABLES
+  streamers = <%- JSON.stringify(streamers) %>
+  console.log(streamers);
+  console.table(streamers.data);
+  jQuery.each(streamers.data, function(i, dat) {
+  		// //val.greeting();
+  		// // $('.box-item').appendTo("#containerside");
+  		// $('<div>', { 'itemid': i
+  		// 			, 'class': 'btn btn-default box-item'
+  		// 			,'text': val.name
+  		// 			})
+      //              // .load('HTML Structure', CallBackFunction())
+      //              .appendTo("#containerside");
+      var output = `<div type="tw" id="${dat.id}" streamerid="${dat.id}" username="${dat.user_name}" class="btn tw btn-default box-item">
+                      <p>${dat.user_name}</p><p class="on">${dat.viewer_count}</p>
+                    </div>`;
+      $('#containerside').append(output);
+  	});
+
+
+
+  ytstreamers = <%- JSON.stringify(ytstreamers) %>
+  console.log(ytstreamers);
+  console.table(ytstreamers.streamers)
+  jQuery.each(ytstreamers.streamers, function(i, dat) {
+    var classx = "off";
+    if (dat.status == "online") {
+      var classx = "on";
+      var output = `<div type="yt" id="${dat.channelID}" streamerid="${dat.channelID}" username="${dat.name}" class="btn yt btn-default box-item ${classx}">
+                      <p>${dat.name}</p><p class="${classx}">${dat.viewers}</p>
+                    </div>`;
+      $('#containerside').append(output);
+    }
+    });
+  console.table(ytstreamers.data);
+
+
+  // console.log("ytstreamers: ");
+  // console.log(ytstreamers.items[0].liveStreamingDetails.concurrentViewers);
+
+
+var streamerid = 0;
+
+
+ //DRAGGABLE HANDLING
+ $('.box-item').draggable({
+
+
+
+     distance: 50,
+     cursor: 'move',
+     helper: "clone",
+     tolerance: "touch",
+		 start: function( event, ui ) {
+               // $( "#primary-primary" ).switchClass( "col-md-12", "col-md-6", 100, "easeInOutQuad" );
+			   // $( "#primary-secondary" ).attr("display","unset");
+			   // $( "#secondary" ).toggle();
+			   var streamerid = $(event.originalEvent.toElement).attr("streamerid");
+			   console.log("iid " + streamerid);
+			   console.log("start");
+			   $('iframe').each(function() {
+            $(this).addClass("moving");
+				});
+				$(".drop").addClass("visib");
+
+            },
+		stop: function() {
+				console.log("end");
+				$('iframe').each(function() {
+          $(this).removeClass("moving");
+				});
+        $(".drop").removeClass("visib");
+				// resetEmptyPlaces();
+		}
+   });
+
+   $("#containerside").droppable({
+     hoverClass: "ui-drop-hover",
+     drop: function(event, ui) {
+       var sideHandle = $(this);
+       streamerid = $(ui.draggable).attr("streamerid");
+       console.log($(ui.draggable));
+       $('.box-item').each(function() {
+         if ($(this).attr("streamerid") === streamerid) {
+           sideHandle.prepend($(this));
+         }
+       });
+     }
+   });
+
+   $( function() {
+    $( ".box-item" ).sortable();
+    $( ".box-item" ).disableSelection();
+  } );
+
+var player;
+
+
+
+function onDrop(gripHandle, dragged) {
+  // var seed = Math.floor((Math.random() * 1000) + 1);
+  streamerid = dragged.attr("streamerid");
+  username = dragged.attr("username");
+  type = dragged.attr("type");
+
+  var center;
+  var style;
+  switch (gripHandle.attr("side")) {
+   case "left":
+     style = ["width: 50%; height:100%; right:0px", "width: 50%; height:100%; left:0px"];
+     break;
+   case "right":
+     style = ["width: 50%; height:100%; left:0px", "width: 50%; height:100%; right:0px"];
+     break;
+   case "top":
+     style = ["width: 100%; height: 50%; right: 0px; left: 0px; top: 50%", "width: 100%;height: 50%;left: 0px"];
+     break;
+   case "bottom":
+     style = ["width: 100%; height: 50%","width: 100%; height: 50%; top: 50%"];
+     break;
+   case "center":
+     style = ["width: 100%;height: 50%; display:none", "width: 100%; height: 100%; right: 0px; left: 0px; top: 0px"];
+
+     // DELTE PREV ELEMENT!
+     break;
+   default:
+  }
+  var cont = gripHandle.parent();
+  var main = cont.parent();
+  var base =`<div class="base" id="base${streamerid+1}" style="${style[0]}"></div>`;
+  main.append(base);
+  $("#base" + streamerid+1).append(cont);
+  // base.append(cont);
+
+  //
+  // <iframe
+  //    src="https://player.twitch.tv/?channel=${username}&muted=true"
+  //    height="auto"
+  //    width="auto"
+  //    frameborder="0"
+  //    scrolling="no"
+  //    constrols="false"
+  //    allowfullscreen="true">
+  //  </iframe>
+  // <div class="drop center" side="center"></div>
+
+  var newBase =`
+  <div class="base" id="base${streamerid}" style="${style[1]}">
+    <div class="cont" id="cont${streamerid}">
+      <div class="drop right" side="right"></div>
+      <div class="drop left" side="left"></div>
+      <div class="drop top" side="top"></div>
+      <div class="drop bottom" side="bottom"></div>
+
+    </div>
+  </div>
+  `;
+  main.append(newBase);
+
+
+if (type === "tw") {
+    // new Twitch.Player("cont"+streamerid, {
+    //         channel: username,
+    //         allowfullscreen: false
+    //       });
+    var framex =`
+      <iframe
+         src="https://player.twitch.tv/?channel=${username}&muted=true"
+         height="auto"
+         width="auto"
+         frameborder="0"
+         scrolling="no"
+         constrols="false"
+         allowfullscreen="true">
+       </iframe>
+       `;
+       $(framex).appendTo($("#cont" + streamerid));
+    // player.setVolume(1.0);
+    // console.log("vol: " + player.getVolume());
+    console.log("tw");
+}else if (type === "yt") {
+
+    var ytiframe =`
+    <iframe src="https://www.youtube.com/embed/live_stream?channel=${streamerid}&autoplay=1" frameborder="0" scrolling="no" allowfullscreen="true"></iframe>
+    `;
+    console.log("yt");
+  $(ytiframe).appendTo($("#cont" + streamerid));
+}
+
+
+
+  $(".drop").droppable({
+    hoverClass: "ui-drop-hover",
+    drop: function(event, ui) {
+
+      var sideHandle = $(this);
+      var parent = $(this).parent()
+      var sideOrientation = $(this).attr("side")
+      // console.log($(this).attr("side"));
+      onDrop(sideHandle, $(ui.draggable));
+      // createCont(sideHandle, parent, streamerid, sideOrientation);
+    }
+  });
+
+  $('.box-item').each(function() {
+    if ($(this).attr("streamerid") === streamerid) {
+      $(this).appendTo($("#cont" + streamerid));
+
+      var btn =`<button id="close${streamerid}" class="btn btn-close" onclick="closeStream('${streamerid}');">X</button>`;
+      $(this).append(btn);
+    }
+  });
+
+  // onclick="closeStream()"
+};
+
+
+
+//    function createCont(sideHandle, parent, streamerid, sideOrientation){
+//
+//      console.log(sideHandle);
+//      console.log(parent);
+//      console.log(sideHandle+"  "+parent+"  "+streamerid+"  "+sideOrientation)
+//
+//      var base = parent.parent().parent();
+//
+//      console.log(base);
+// var newBaseStyle = "";
+//
+//
+//      switch (sideOrientation) {
+//         case "left":
+//           newBaseStyle = "width: 50%; left:0px"
+//           oldBaseStyle = "width: 50%; right:0px"
+//           //console.log("Oranges are $0.59 a pound.");
+//           break;
+//         case "right":
+//           newBaseStyle = "width: 50%; right:0px
+//           oldBaseStyle = "width: 50%; left:0px"
+//           // console.log("Apples are $0.32 a pound.");
+//           break;
+//         case "top":
+//           // console.log("Bananas are $0.48 a pound.");
+//           break;
+//         case "bottom":
+//           // console.log("Cherries are $3.00 a pound.");
+//           break;
+//         default:
+//           // console.log("Sorry, we are out of " + expr + ".");
+//       }
+//
+//      // <div streamerid="${dat.id}" class="btn btn-default box-item">
+//      //    <p>${dat.user_name}</p><p class="on">${dat.viewer_count}</p>
+//      //  </div>
+//
+//      var cont =`
+//      <div class="main" style="${newBaseStyle}">
+//        <div class="base">
+//            <div class="cont">
+//              <div class="drop right" side="right"></div>
+//              <div class="drop left" side="left"></div>
+//              <div class="drop top" side="top"></div>
+//              <div class="drop bottom" side="bottom"></div>
+//              <div class="drop center" side="center"></div>
+//              <iframe
+//                 src="https://player.twitch.tv/?channel=failarmy&muted=true"
+//                 height="auto"
+//                 width="auto"
+//                 frameborder="0"
+//                 scrolling="no"
+//                 allowfullscreen="true">
+//               </iframe>
+//            </div>
+//          </div>
+//
+//       `;
+//      base.append(cont);
+//      console.log("sibl?");
+//      // $( "li.third-item" ).siblings().css( "background-color", "red" );
+//       parent.parent().css({"width": "50%", "right": "0px"});
+//      console.log(parent.parent());
+//      $(".drop").droppable({
+//        hoverClass: "ui-drop-hover",
+//        drop: function(event, ui) {
+//
+//          var sideHandle = $(this);
+//          var parent = $(this).parent()
+//          var sideOrientation = $(this).attr("side")
+//          streamerid = $(ui.draggable).attr("streamerid");
+//          // console.log($(this).attr("side"));
+//          $('.box-item').each(function() {
+//            if ($(this).attr("streamerid") === streamerid) {
+//              $(this).appendTo(sideHandle);
+//            }
+//          });
+//
+//          createCont(sideHandle, parent, streamerid, sideOrientation);
+//        }
+//      });
+
+
+
+   // }
+
+   $(".drop").droppable({
+     hoverClass: "ui-drop-hover",
+     drop: function(event, ui) {
+
+       var sideHandle = $(this);
+       var parent = $(this).parent()
+       var sideOrientation = $(this).attr("side")
+
+       dragged = $(ui.draggable);
+       // console.log($(this).attr("side"));
+       onDrop(sideHandle, dragged);
+
+
+       // createCont(sideHandle, parent, streamerid, sideOrientation);
+     }
+   });
+
+   // var container = $("#1")
+
+   // $('<iframe>', {	 'class': 'iframex'
+   // 					,'containerid': 'containerid'
+   // 					,'id': 'streamer[0].id'
+   // 					,'text': 'streamer[0].name'
+   // 					,'src': 'https://player.twitch.tv/?channel=pietsmiettv&muted=false'
+   // 					,'height': '100%'
+   // 					,'width': '100%'
+   // 					,'frameborder': '0'
+   // 					,'scrolling': 'no'
+   // 					,'allowfullscreen': 'yes'
+   // 					})
+   // 					.appendTo($( ".cont" ));
+
+
+  //   $(".box-item").draggable({
+  //       cursor: 'move',
+  //       helper: "clone",
+  //   distance: 50,
+  //   start: function( event, ui ) {
+  //              // $( "#primary-primary" ).switchClass( "col-md-12", "col-md-6", 100, "easeInOutQuad" );
+  //        // $( "#primary-secondary" ).attr("display","unset");
+  //        // $( "#secondary" ).toggle();
+  //        var draggableid = $(event.originalEvent.toElement).attr("draggableid");
+  //        console.log("draggableid: " + draggableid);
+  //        console.log("start");
+  //        $('.iframex').each(function() {
+  //           $(this).addClass("moving");
+  //       });
+  //       $(".panel-heading").addClass("visib");
+  //
+  //   },
+  //   stop: function() {
+  //       console.log("end");
+  //       $('.iframex').each(function() {
+  //           $(this).removeClass("moving");
+  //       });
+  //   }
+  // });
+  //
+  //
+  //
+  // $(".drop").droppable({
+  // 		tolerance: 'touch',
+  //         hoverClass: "ui-drop-hover",
+  // 		drop: function(event, ui) {
+  //         var draggableid = $(event.originalEvent.toElement).attr("draggableid");
+  //         console.log($(event.originalEvent.toElement));
+  //              // createStream(1, "#container1", result, result.container);
+  //             // $('.box-item').each(function() {
+  //             //     if ($(this).attr("itemid") === itemid) {
+  //             //         $(this).appendTo("#1containerheading");
+  //             //     }
+  //             // });
+  //         }
+  //     });
+
+
+  //SEARCH HANDLING
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#containerside .btn").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      $(".box-item").css({
+                                         'font-size' : 'unset',
+                                         'padding' : '5px 20px',
+                                         'font-weight' : 'unset'
+                                      });
+      $(".box-item:visible").first().css({
+                                         'font-size' : '18px',
+                                         'padding' : '20px',
+                                         'font-weight' : 'bold'
+                                      });
+    });
+  });
+});
+}
+</script>

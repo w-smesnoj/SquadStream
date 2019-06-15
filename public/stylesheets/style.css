@@ -14,6 +14,8 @@ body > div > div > div > div > div.col-md-2 > div > div.panel-heading {
 }
 
 
+
+
 body > div > div > div > div > div.main > div > div > div.base:nth-child(1) {
 	height: 0% !important;
 }
@@ -56,6 +58,57 @@ body > div > div > div > div > div.main > div > div > div.base:nth-child(2) {
     font-weight: normal;
     color: #ffffff;
 }
+
+.ui-sotrable-handle {
+	margin: 0px !important;
+	float: left !important;
+ 	line-height: 30px !important;
+}
+
+
+#tabs-4{
+			    overflow-x: auto;
+			padding: 40px !important;
+}
+h1 {
+
+    font-weight: bold;
+}
+
+
+
+ul {
+    padding-inline-start: 20px;
+}
+
+
+p,
+ul,
+h1,
+h4 {
+	color: #b8b5c0;
+}
+
+#tabs-4 > div > a {
+    color: #7497ff;
+    text-decoration: underline;
+}
+
+
+.spacer {
+    height: 20px;
+    display: -webkit-inline-box;
+}
+#tabs-1,
+#tabs-2,
+#tabs-3 {
+	background-image: url(https://i.imgur.com/a99GCn7.png) !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: 230px !important;
+		/* opacity: 0.5; */
+}
+
 
 a:hover{
 	cursor: pointer !important;
@@ -113,7 +166,7 @@ display: block;
 	background-image: url(https://i.imgur.com/Vn8xFi4.png);
 	background-position: center;
 	background-repeat: no-repeat;
-	background-size: 75%;
+	background-size: 230px;
 	/* position: relative; */
 	background-color: #0f0e11;
 }
@@ -173,8 +226,26 @@ display: block;
 }
 
 
+.textcont {
+    max-width: 700px;
+    text-align: justify;
+    line-height: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: hsla(264, 13%, 19%, 1);
+    padding: 60px 70px 70px 70px;
+    color: black !important;
+}
 .on{
 	color:red;
+
+}
+.on,
+.ui-sortable-handle {
+
+	margin: 0px;
+	    float: left;
+	    line-height: 30px;
 }
 
 .off{
@@ -193,10 +264,10 @@ display: block;
 	    /* right: 0px; */
 }
 
-p{    margin: 0px;
+/* p{    margin: 0px;
     float: left;
     line-height: 30px;
-}
+} */
 .top{
 	z-index:100;
 }

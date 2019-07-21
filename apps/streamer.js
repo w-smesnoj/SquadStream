@@ -9,7 +9,7 @@ var fs = require("fs");
 
 
 var options = { method: 'GET',
-    url: `https://api.twitch.tv/helix/streams?user_login=pietsmiet&user_login=izzi&user_login=stegi&user_login=bastighg&user_login=seltixonair&user_login=herrbergmann&user_login=seltixonairx&user_login=venicraftx&user_login=zeosite&user_login=seltixonairx&user_login=thekedoszone&user_login=mcbiirdy&user_login=thefabohd&user_login=bonjwa&user_login=moondye7&user_login=fazon&user_login=earliboy&user_login=cornel&user_login=zinushd&user_login=sparkofphoenixtv&user_login=clym&user_login=halbzwilling&user_login=nichtnilo&user_login=dienessy&user_login=baluilp&user_login=nieraus&user_login=eleqs&user_login=baastizockt&user_login=flojamfm&user_login=letstaddl&user_login=papaplatte`
+    url: `https://api.twitch.tv/helix/streams?user_login=pietsmiet&user_login=izzi&user_login=stegi&user_login=bastighg&user_login=seltixonair&user_login=herrbergmann&user_login=seltixonairx&user_login=venicraftx&user_login=zeosite&user_login=seltixonairx&user_login=thekedoszone&user_login=mcbiirdy&user_login=thefabohd&user_login=bonjwa&user_login=moondye7&user_login=fazon&user_login=earliboy&user_login=cornel&user_login=zinushd&user_login=sparkofphoenixtv&user_login=clym&user_login=notcolln&user_login=halbzwilling&user_login=nichtnilo&user_login=dienessy&user_login=baluilp&user_login=nieraus&user_login=eleqs&user_login=baastizockt&user_login=flojamfm&user_login=letstaddl&user_login=papaplatte`
 
     ,
     headers:{ 	'Client-ID': '3pg3zv5se9mgdur14voydceb2hky4m' }

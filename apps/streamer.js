@@ -9,7 +9,7 @@ var fs = require("fs");
 
 
 var options = { method: 'GET',
-    url: `https://api.twitch.tv/helix/streams?user_login=pietsmiet&user_login=izzi&user_login=stegi&user_login=bastighg&user_login=seltixonair&user_login=herrbergmann&user_login=seltixonairx&user_login=venicraftx&user_login=zeosite&user_login=seltixonairx&user_login=thekedoszone&user_login=mcbiirdy&user_login=thefabohd&user_login=bonjwa&user_login=moondye7&user_login=fazon&user_login=earliboy&user_login=cornel&user_login=zinushd&user_login=sparkofphoenixtv&user_login=clym&user_login=reyst&user_login=rocketbeanstv&user_login=shurjoka&user_login=notcolln&user_login=halbzwilling&user_login=nichtnilo&user_login=dienessy&user_login=baluilp&user_login=nieraus&user_login=eleqs&user_login=baastizockt&user_login=flojamfm&user_login=letstaddl&user_login=papaplatte`
+    url: `https://api.twitch.tv/helix/streams?user_login=pietsmiet&user_login=dieseraj&user_login=Augsii&user_login=bastighg&user_login=bonjwa&user_login=briiaan&user_login=aceow_&user_login=Alphastein&user_login=briiaan&user_login=cengobengo&user_login=clym&user_login=cornel&user_login=dangermv&user_login=daannyy&user_login=danutopia99&user_login=danutopia99&user_login=mooo_&user_login=orangemorange&user_login=dienessy&user_login=dompra&user_login=earliboy&user_login=einfachjessie&user_login=eiterbeulelive&user_login=eleqs&user_login=exidus&user_login=fazon&user_login=dnertv&user_login=fireflo&user_login=fixxyt&user_login=flojamfm&user_login=fynix&user_login=gommehd&user_login=hakan_d_hanyou&user_login=hannimoonyt&user_login=discohengo&user_login=impimpimp&user_login=izzmaro&user_login=lemelodyyy&user_login=letshugotv&user_login=letsphillive&user_login=lexr4y&user_login=mizzuri_&user_login=mycoolnameyt&user_login=socialhase&user_login=nichtnilo&user_login=nieraus&user_login=nikeles&user_login=norisk&user_login=notcolln&user_login=papanota&user_login=patatl&user_login=paulterra94&user_login=pezcraft&user_login=plasm_&user_login=pumithecat&user_login=bonjwaredpanda&user_login=revedyt&user_login=rotpilz&user_login=sasukey&user_login=seltix&user_login=sereaxstreamt&user_login=spacemitx&user_login=sparkofphoenixtv&user_login=skybreaker99&user_login=thefabohd&user_login=stegi&user_login=takaishii&user_login=trilluxe&user_login=dervaspel&user_login=vossipanda&user_login=zanderlp&user_login=zeosite&user_login=zinushd&user_login=zombiezockttv&user_login=baastizockt&user_login=arfore&user_login=askationyt`
 
     ,
     headers:{ 	'Client-ID': '3pg3zv5se9mgdur14voydceb2hky4m' }
@@ -78,10 +78,31 @@ var cheerio = require("cheerio");
 ytstreamers = {
   "streamers":[
     {"name":"Ungespielt", "channelID":"UCcn4UOBvB0W2HjCcLFLuu2w", "status":"offline", "viewers":"0"},
+    {"name":"Abgegrieft", "channelID":"UCLTALEezHg3uzN3bdfqrhfQ", "status":"offline", "viewers":"0"},
+    {"name":"Alphastein", "channelID":"UCiTydOPjFaDTkdygnFxAdaQ", "status":"offline", "viewers":"0"},
+    {"name":"Balui", "channelID":"UCZQYQeUZ9TJJxUgXdbxv9JQ", "status":"offline", "viewers":"0"},
+    {"name":"Caravas", "channelID":"UC4UDgtqBSQZ4yk7H_sEiFWA", "status":"offline", "viewers":"0"},
+    {"name":"CuzImSara", "channelID":"UCDbyF9KKr9iuRRMswaJHnMw", "status":"offline", "viewers":"0"},
+    {"name":"Dadosch", "channelID":"UCcJbf09hi5ESUKs45vfUYcw", "status":"offline", "viewers":"0"},
+    {"name":"Dako", "channelID":"UCiphABouy0cuK6GOF9wvYqQ", "status":"offline", "viewers":"0"},
+    {"name":"DiddiHD", "channelID":"UC_38KkE0w2pwMc74n1DNzag", "status":"offline", "viewers":"0"},
+    {"name":"DJ JoeMen", "channelID":"UC1Bsw5AhSStMii_wHA09kEQ", "status":"offline", "viewers":"0"},
+    {"name":"elpa", "channelID":"UCxiydj0IkvR0MHMNgMESWbA", "status":"offline", "viewers":"0"},
+    {"name":"Firegoden", "channelID":"UCohZCZUm6uP6OdDQuRsMOIw", "status":"offline", "viewers":"0"},
+    {"name":"InzuchtTV", "channelID":"UCMLlLKT0DcynQteDWfUNFXQ", "status":"offline", "viewers":"0"},
+    {"name":"Just Nerov", "channelID":"UCiiGHI0DtajhSqQtf0478hA", "status":"offline", "viewers":"0"},
+    {"name":"Kati Karenina", "channelID":"UCL7oLwxfYw_X6NWBhF2m57A", "status":"offline", "viewers":"0"},
+    {"name":"LvckyLuke", "channelID":"UCEC9r4znARi_De6MaC3yaTw", "status":"offline", "viewers":"0"},
+    {"name":"Mayd", "channelID":"UCHKc2NhGqamkTWINnUvQXGg", "status":"offline", "viewers":"0"},
+    {"name":"Meistergamer", "channelID":"UCtY_-AjREq_QNEReTslmSDg", "status":"offline", "viewers":"0"},
+    {"name":"Minimichecker", "channelID":"UC8fdIqgzju3-tHVtZ-6wFRA", "status":"offline", "viewers":"0"},
+    {"name":"MultiGames", "channelID":"UCdTvgitpUNyZIaimMo25MbQ", "status":"offline", "viewers":"0"},
+    {"name":"Perian", "channelID":"UCGtdlhalfikhSQgEJYcTRlQ", "status":"offline", "viewers":"0"},
+    {"name":"Propa", "channelID":"UCkT2ozRegFriMovnpYb2Z6Q", "status":"offline", "viewers":"0"},
+    {"name":"Qjuzel", "channelID":"UCfagsfM_Uk44LzA5egLrmTg", "status":"offline", "viewers":"0"},
+    {"name":"Rippeax", "channelID":"UCiTydOPjFaDTkdygnFxAdaQ", "status":"offline", "viewers":"0"},
     {"name":"Scurrows", "channelID":"UCL68ZdM_aGd2TgMviT5-sXg", "status":"offline", "viewers":"0"},
-    {"name":"Mizzuri", "channelID":"UCiP3x_wVNSaS8Ap8psR5Ddw", "status":"offline", "viewers":"0"},
-    {"name":"Parovi", "channelID":"UCOV8gY5m2IhoEsyGVA27gKQ", "status":"offline", "viewers":"0"},
-    {"name":"RocketBeansTV", "channelID":"UCQvTDmHza8erxZqDkjQ4bQQ", "status":"offline", "viewers":"0"}
+    {"name":"ZumiHD", "channelID":"UC-ZrweK1lD-zXYH-yqHWZuw", "status":"offline", "viewers":"0"}
   ]
 }
 
